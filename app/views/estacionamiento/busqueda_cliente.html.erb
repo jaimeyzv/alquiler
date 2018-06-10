@@ -1,0 +1,129 @@
+<div class="row">
+	<div class="col-xs-12">
+		<section class="panel panel-featured panel-featured-danger animated fadeInRight">
+		<div class="panel-body">
+            <form class="form-horizontal">
+            <div class="form-group">
+                <label for="sel_distrito" class="col-sm-2 control-label">Distrito</label>
+                <div class="col-sm-10">
+                    <select id="sel_distrito" class="form-control">
+                        <option value="M">Lima</option>
+                        <option value="F">Surco</option>
+                        <option value="F">Lince</option>
+                        <option value="F">San Juan de Lurigancho</option>
+                        <option value="F">La Molina</option>
+                        <option value="F">Ate</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="txt_ubicacion" class="col-sm-2 control-label">Ubicación</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="txt_ubicacion" placeholder="Ubicación">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="txt_precio_desde" class="col-sm-2 control-label">Precio Desde</label>
+                <div class="col-sm-4">
+                <input type="text" class="form-control" id="txt_precio_desde" placeholder="Precio Desde">
+                </div>
+                <label for="txt_precio_hasta" class="col-sm-2 control-label">Precio Hasta</label>
+                <div class="col-sm-4">
+                <input type="text" class="form-control" id="txt_precio_hasta" placeholder="Precio Hasta">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="txt_puntuacion" class="col-sm-2 control-label">Puntuación</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" id="txt_puntuacion" placeholder="Puntuación" min="0" max="5">
+                </div>
+                <div class="col-sm-2">
+                  <div class="checkbox-custom checkbox-default" style="">
+                    <input id="chck_puntos_todos" name="chck_puntos_todos" type="checkbox"/>
+                    <label for="chck_puntos_todos">Todas Puntuaciones</label>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Buscar</button>
+                </div>
+            </div>
+            </form>
+            <br><br><br>
+        </div>
+        </section>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src=<%= image_url('Estacionamiento001.jpg') %> height="54" alt="Porto Admin" />
+            <div class="caption">
+            <h3>El Sol</h3>
+            <p>San Borja, 4*3.5 m2, S/ 12.00</p>
+            <p><a href="#" class="btn btn-default" role="button">Ver</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src=<%= image_url('Estacionamiento002.jpg') %> height="54" alt="Porto Admin" />
+            <div class="caption">
+            <h3>La Luna</h3>
+            <p>Surquillo, 3*3.5 m2, S/ 8.00</p>
+            <p><a href="#" class="btn btn-default" role="button">Ver</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src=<%= image_url('Estacionamiento003.jpg') %> height="54" alt="Porto Admin" />
+            <div class="caption">
+            <h3>La Luna</h3>
+            <p>Surquillo, 3*3.5 m2, S/ 8.00</p>
+            <p><a href="#" class="btn btn-default" role="button">Ver</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src=<%= image_url('Estacionamiento001.jpg') %> height="54" alt="Porto Admin" />
+            <div class="caption">
+            <h3>El Sol</h3>
+            <p>San Borja, 4*3.5 m2, S/ 12.00</p>
+            <p><a href="#" class="btn btn-default" role="button">Ver</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src=<%= image_url('Estacionamiento002.jpg') %> height="54" alt="Porto Admin" />
+            <div class="caption">
+            <h3>La Luna</h3>
+            <p>Surquillo, 3*3.5 m2, S/ 8.00</p>
+            <p><a href="#" class="btn btn-default" role="button">Ver</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src=<%= image_url('Estacionamiento003.jpg') %> height="54" alt="Porto Admin" />
+            <div class="caption">
+            <h3>La Luna</h3>
+            <p>Surquillo, 3*3.5 m2, S/ 8.00</p>
+            <p><a href="#" class="btn btn-default" role="button">Ver</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="thumbnail">
+            <img src=<%= image_url('publicidad001.jpg') %> height="54" alt="Porto Admin" />
+        </div>
+    </div>
+</div>
