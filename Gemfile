@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails'
 gem 'jquery-rails'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 
 
 group :development, :test do
@@ -52,7 +54,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'jquery-rails'
-gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'

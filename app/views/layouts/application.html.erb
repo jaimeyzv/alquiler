@@ -3,12 +3,12 @@
   <head>
     <title>Login</title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" media="all" href="/assets/skins/default.self-ecf32796a12ed45e1dcbf0f5446bbe6608995f5cd8fd2750125fbab4129bcf3b.css?body=1" data-turbolinks-track="reload" />
     <link rel="stylesheet" media="all" href="/assets/bootstrap/css/bootstrap.self-0c038440b0de4f2c5113cb662eee2e1c5a5e3a2b93b78a0427eee620c8ab9ba5.css?body=1" data-turbolinks-track="reload" />
-  </head>
+    </head>
   <body>
     <%= yield %>
-  </body>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </body>    
 </html>
