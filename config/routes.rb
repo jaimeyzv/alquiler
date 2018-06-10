@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   get 'estacionamiento/busqueda'
   post 'estacionamiento/busqueda_post'
-  
+
+  get 'estacionamiento/mantenimiento'
+  post 'estacionamiento/mantenimiento_post'
+
  # get 'formularios/ejercicio3'
  # post 'formularios/ejercicio3_post'
 
