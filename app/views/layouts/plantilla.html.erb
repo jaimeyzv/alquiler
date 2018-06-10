@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="fixed">
+	<head>
+        <title>Estacionamientos</title>
+		<!-- Librerias cabecera:start -->
+		<%= csrf_meta_tags %>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     <!-- Librerias cabecera:end -->
+
+	</head>
+	<body>
+		<section class="body">
+
+			<!-- start: header -->
+			<header class="header">
+			 <%= render 'layouts/header' %>
+			</header>
+			<!-- end: header -->
+
+			<div class="inner-wrapper">
+			
+				<!-- start: sidebar -->
+				 <%= render 'layouts/aside' %>
+			    <!-- end: sidebar -->
+
+				<section role="main" class="content-body">
+					<header id="cabecera" class="page-header animated fadeInLeft">
+						
+					<h2>Principal</h2>
+					
+						<div class="right-wrapper pull-right">
+							<ol class="breadcrumbs">
+								<li>
+									<a href="#">
+										<i class="fa fa-home"></i>
+									</a>
+								</li>
+								<li><span>Principal</span></li>
+							</ol>
+					
+							<a class="sidebar-right-toggle" ><i class="fa fa-chevron-left"></i></a>
+						</div>
+					
+					
+					</header>
+
+					<!-- start: page -->
+						
+					<%= yield %>
+						
+					<!-- end: page -->
+
+					 <%= render 'layouts/footer' %>
+				</section>
+			</div>
+
+			<!-- START: sidebar-->
+
+              
+
+              <!-- END: sidebar-->
+              
+		</section>
+
+	 <!-- START: LIB JS FOOTER-->
+
+             <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+         <!-- END: LIB JS FOOTER-->
+         
+         
+	
+	</body>
+</html>
