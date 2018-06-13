@@ -18,4 +18,13 @@ class EstacionamientoController < PlantillaController
       render "busqueda"
   end
 
+  def alquiler_estacionamiento
+    Rails.logger.debug("--------------> cargando alquiler" );
+  end
+    
+  def alquiler_estacionamiento_post
+      
+      render "alquiler"
+  end
+
 end
