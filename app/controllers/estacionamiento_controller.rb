@@ -11,11 +11,11 @@ class EstacionamientoController < PlantillaController
 
   def busqueda_cliente
     Rails.logger.debug("--------------> cargando busqueda" );
-    end
+  end
     
-    def busqueda_cliente_post
+  def busqueda_cliente_post
       
       render "busqueda"
-    end
+  end
 
 end
