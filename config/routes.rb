@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'estacionamiento/alquiler_estacionamiento'
   post 'estacionamiento/alquiler_estacionamiento_post'
 
+  get 'estacionamiento/detalle'
+
  # get 'formularios/ejercicio3'
  # post 'formularios/ejercicio3_post'
 

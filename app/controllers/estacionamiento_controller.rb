@@ -27,4 +27,8 @@ class EstacionamientoController < PlantillaController
       render "alquiler"
   end
 
+  def detalle
+    Rails.logger.debug("--------------> cargando detalle" );
+  end
+
 end
