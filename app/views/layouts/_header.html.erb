@@ -1,44 +1,36 @@
 
-<!-- START : HEADER-->
+<div class="logo-container">
+	<a href="#" class="logo">
+		<img src=<%= image_url('logoSunarp.png') %> height="47" alt="SRMD"/>
+	</a>
+	<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+		<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+	</div>
+</div>
 
-				<div class="logo-container">
-					<a href="#" class="logo">
-						<img src=<%= image_url('logoSunarp.png') %> height="47" alt="SRMD"/>
-					</a>
-					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
-						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-					</div>
-				</div>
-			
-				<!-- start: search & user box -->
-				<div class="header-right">
+<div class="header-right">
+	<div id="userbox" class="userbox">
+		<a href="#" data-toggle="dropdown">
+			<figure class="profile-picture">
+				<img src=<%= image_url('!logged-user.jpg') %> alt="CH" class="img-circle" data-lock-picture=<%= image_url('!logged-user.jpg') %> />
+			</figure>
+			<div class="profile-info">
+				<span class="name">Cesar Huachua Llanos</span>
+				<span class="role">Invitado</span>
+			</div>
 
-					<div id="userbox" class="userbox">
-						<a href="#" data-toggle="dropdown">
-							<figure class="profile-picture">
-								<img src=<%= image_url('!logged-user.jpg') %> alt="CH" class="img-circle" data-lock-picture=<%= image_url('!logged-user.jpg') %> />
-							</figure>
-							<div class="profile-info">
-								<span class="name">Cesar Huachua Llanos</span>
-								<span class="role">Invitado</span>
-							</div>
-			
-							<i class="fa custom-caret"></i>
-						</a>
-			
-						<div class="dropdown-menu">
-							<ul class="list-unstyled">
-								<li class="divider">
-									
-								</li>
-								
-								<li>
-									<a role="menuitem" tabindex="-1" href="#"><i class="fa fa-power-off"></i>Salir</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- end: search & user box -->
-             
-<!-- END : HEADER-->
+			<i class="fa custom-caret"></i>
+		</a>
+		<div class="dropdown-menu">
+			<ul class="list-unstyled">
+				<li class="divider">
+					
+				</li>
+				
+				<li>
+				<a role="menuitem" tabindex="-1" href="../seguridad/login"><i class="fa fa-power-off"></i>Salir</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

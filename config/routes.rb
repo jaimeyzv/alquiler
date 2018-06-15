@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'publicidad/mantenimiento'
+
   get 'usuario/tipousuario'
   get 'usuario/mantenimiento'
 
@@ -14,13 +16,8 @@ Rails.application.routes.draw do
   get 'estacionamiento/mantenimiento'
   post 'estacionamiento/mantenimiento_post'
 
-  get 'estacionamiento/alquiler_estacionamiento'
-  post 'estacionamiento/alquiler_estacionamiento_post'
+  get 'estacionamiento/alquiler'
+  post 'estacionamiento/alquiler_post'
 
-  get 'estacionamiento/detalle'
-
- # get 'formularios/ejercicio3'
- # post 'formularios/ejercicio3_post'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'estacionamiento/buscar_alquilados'
 end
