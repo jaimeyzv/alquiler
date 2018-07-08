@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'usuario/tipousuario'
   get 'usuario/mantenimiento'
+  post 'usuario/mantenimiento_post'
 
   get 'seguridad/login'
   post 'seguridad/login_post'

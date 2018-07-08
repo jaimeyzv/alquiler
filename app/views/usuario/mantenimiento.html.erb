@@ -2,23 +2,24 @@
 <div class="center-sign">
 <div class="panel panel-sign">
 <div class="panel-body" >
-<form class="form-horizontal">
+
+<%= form_for :usuario, :url =>{:controller => "usuario", :action => "mantenimiento_post"} ,:method => :post,:html =>{ :class => "form-horizontal" , :id => "form_usuario_mantenimiento"} do |f|%>
     <div class="form-group">
         <label for="txt_nombre" class="col-sm-3 control-label">Nombre</label>
         <div class="col-sm-9">
-        <input type="text" class="form-control" id="txt_nombre" placeholder="Nombre">
+        <input type="text" class="form-control" id="txt_nombre" placeholder="Nombre" required>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_ape_pat" class="col-sm-3 control-label">Apellido Paterno</label>
         <div class="col-sm-9">
-        <input type="text" class="form-control" id="txt_ape_pat" placeholder="Apellido Paterno">
+        <input type="text" class="form-control" id="txt_ape_pat" placeholder="Apellido Paterno" required>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_ape_mat" class="col-sm-3 control-label">Apellido Materno</label>
         <div class="col-sm-9">
-        <input type="text" class="form-control" id="txt_ape_mat" placeholder="Apellido Materno">
+        <input type="text" class="form-control" id="txt_ape_mat" placeholder="Apellido Materno" required>
         </div>
     </div>
     <div class="form-group">
@@ -42,7 +43,7 @@
     <div class="form-group">
         <label for="txt_num_doc" class="col-sm-3 control-label">Número Documento</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="txt_num_doc" placeholder="Número Documento">
+            <input type="text" class="form-control" id="txt_num_doc" placeholder="Número Documento" required>
         </div>
     </div>
     <div class="form-group">
@@ -57,13 +58,13 @@
     <div class="form-group">
         <label for="txt_correo" class="col-sm-3 control-label">Correo</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="txt_correo" placeholder="Correo">
+            <input type="text" class="form-control" id="txt_correo" placeholder="Correo" required>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_fecha_nac" class="col-sm-3 control-label">Fecha Nacimiento</label>
         <div class="col-sm-9 input-group date" id='datetimepicker1'>
-            <input type="text" class="form-control" id="txt_fecha_nac" placeholder="Fecha Nacimiento">
+            <input type="text" class="form-control" id="txt_fecha_nac" placeholder="Fecha Nacimiento" required>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -72,27 +73,29 @@
     <div class="form-group">
         <label for="txt_celular" class="col-sm-3 control-label">Celular</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="txt_celular" placeholder="Celular">
+            <input type="text" class="form-control" id="txt_celular" placeholder="Celular" required>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_password" class="col-sm-3 control-label">Contraseña</label>
         <div class="col-sm-9">
-            <input type="password" class="form-control" id="txt_password" placeholder="Contraseña">
+            <input type="password" class="form-control" id="txt_password" placeholder="Contraseña" required>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_confirmar_password" class="col-sm-3 control-label">Confirmar Contraseña</label>
         <div class="col-sm-9">
-            <input type="password" class="form-control" id="txt_confirmar_password" placeholder="Confirmar Contraseña">
+            <input type="password" class="form-control" id="txt_confirmar_password" placeholder="Confirmar Contraseña" required>
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
             <a href="../estacionamiento/busqueda_cliente" class="btn btn-default">Crear</a>
+            <button type="submit" class="btn btn-primary mb-2">Crear B</button>
         </div>
     </div>
-</form>
+<% end %>
+
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker1').datetimepicker();
