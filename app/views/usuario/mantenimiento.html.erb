@@ -7,25 +7,25 @@
     <div class="form-group">
         <label for="txt_nombre" class="col-sm-3 control-label">Nombre</label>
         <div class="col-sm-9">
-        <input type="text" class="form-control" id="txt_nombre" placeholder="Nombre" required>
+        <input type="text" class="form-control" id="txt_nombre" name="txt_nombre" placeholder="Nombre" required>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_ape_pat" class="col-sm-3 control-label">Apellido Paterno</label>
         <div class="col-sm-9">
-        <input type="text" class="form-control" id="txt_ape_pat" placeholder="Apellido Paterno" required>
+        <input type="text" class="form-control" id="txt_ape_pat" name="txt_ape_pat" placeholder="Apellido Paterno" required>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_ape_mat" class="col-sm-3 control-label">Apellido Materno</label>
         <div class="col-sm-9">
-        <input type="text" class="form-control" id="txt_ape_mat" placeholder="Apellido Materno" required>
+        <input type="text" class="form-control" id="txt_ape_mat" name="txt_ape_mat" placeholder="Apellido Materno" required>
         </div>
     </div>
     <div class="form-group">
         <label for="sel_sexo" class="col-sm-3 control-label">Sexo</label>
         <div class="col-sm-9">
-            <select id="sel_sexo" class="form-control">
+            <select id="sel_sexo" name="sel_sexo" class="form-control">
                 <option value="M">Masculino</option>
                 <option value="F">Femenino</option>
             </select>
@@ -34,37 +34,38 @@
     <div class="form-group">
         <label for="sel_tipo_doc" class="col-sm-3 control-label">Tipo Documento</label>
         <div class="col-sm-9">
-            <select id="sel_tipo_doc" class="form-control">
-                <option value="DNI">DNI</option>
-                <option value="PASAPORTE">Pasaporte</option>
+            <select id="sel_tipo_doc" name="sel_tipo_doc" class="form-control">
+                <%@tipo_documentos.each do |p| %>
+                <option value="<%=p.IdTipoDocumento.to_s%>"><%=p.Nombre.to_s %></option>
+                <% end %>
             </select>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_num_doc" class="col-sm-3 control-label">Número Documento</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="txt_num_doc" placeholder="Número Documento" required>
+            <input type="text" class="form-control" id="txt_num_doc" name="txt_num_doc" placeholder="Número Documento" required>
         </div>
     </div>
     <div class="form-group">
         <label for="sel_tipo_usuario" class="col-sm-3 control-label">Tipo Usuario</label>
         <div class="col-sm-9">
-            <select id="sel_tipo_usuario" class="form-control">
-                <option value="DUENO">Dueño</option>
-                <option value="CLIENTE">Cliente</option>
+            <select id="sel_tipo_usuario" name="sel_tipo_usuario" class="form-control">
+                <option value="D">Dueño</option>
+                <option value="C">Cliente</option>
             </select>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_correo" class="col-sm-3 control-label">Correo</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="txt_correo" placeholder="Correo" required>
+            <input type="text" class="form-control" id="txt_correo" name="txt_correo" placeholder="Correo" required>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_fecha_nac" class="col-sm-3 control-label">Fecha Nacimiento</label>
         <div class="col-sm-9 input-group date" id='datetimepicker1'>
-            <input type="text" class="form-control" id="txt_fecha_nac" placeholder="Fecha Nacimiento" required>
+            <input type="text" class="form-control" id="txt_fecha_nac" name="txt_fecha_nac" placeholder="Fecha Nacimiento" required>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -73,25 +74,25 @@
     <div class="form-group">
         <label for="txt_celular" class="col-sm-3 control-label">Celular</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="txt_celular" placeholder="Celular" required>
+            <input type="text" class="form-control" id="txt_celular" name="txt_celular" placeholder="Celular" required>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_password" class="col-sm-3 control-label">Contraseña</label>
         <div class="col-sm-9">
-            <input type="password" class="form-control" id="txt_password" placeholder="Contraseña" required>
+            <input type="password" class="form-control" id="txt_password" name="txt_password" placeholder="Contraseña" required>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_confirmar_password" class="col-sm-3 control-label">Confirmar Contraseña</label>
         <div class="col-sm-9">
-            <input type="password" class="form-control" id="txt_confirmar_password" placeholder="Confirmar Contraseña" required>
+            <input type="password" class="form-control" id="txt_confirmar_password" name="txt_confirmar_password" placeholder="Confirmar Contraseña" required>
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
-            <a href="../estacionamiento/busqueda_cliente" class="btn btn-default">Crear</a>
-            <button type="submit" class="btn btn-primary mb-2">Crear B</button>
+            <!--<a href="../estacionamiento/busqueda_cliente" class="btn btn-default">Crear</a>-->
+            <button type="submit" class="btn btn-primary mb-2">Crear</button>
         </div>
     </div>
 <% end %>
