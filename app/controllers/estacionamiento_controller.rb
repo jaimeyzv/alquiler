@@ -1,3 +1,5 @@
+require File.join(Rails.root, "app", "models", "Distrito.rb")
+
 class EstacionamientoController < PlantillaController
 
   def busqueda_dueno
@@ -10,6 +12,8 @@ class EstacionamientoController < PlantillaController
   end
 
   def busqueda_cliente
+    @distritos    = Distrito.find_by_sql("SELECT * FROM Distrito ORDER BY Nombre ASC")
+
     Rails.logger.debug("--------------> cargando busqueda" );
   end
     

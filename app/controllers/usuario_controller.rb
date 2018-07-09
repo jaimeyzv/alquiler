@@ -1,6 +1,8 @@
 require File.join(Rails.root, "app", "models", "Usuario.rb")
 
 class UsuarioController < ApplicationController
+  @@tipo_documentos = Usuario.find_by_sql("SELECT * FROM TipoDocumento")
+
   def tipousuario
     
   end
@@ -10,6 +12,8 @@ class UsuarioController < ApplicationController
   end
 
   def mantenimiento_post
+    @tipo_documentos    = Usuario.find_by_sql("SELECT * FROM TipoDocumento")
+    @resultado          = ''
     @txt_nombre         = params[:txt_nombre] 
     @txt_ape_pat        = params[:txt_ape_pat] 
     @txt_ape_mat        = params[:txt_ape_mat] 
@@ -22,9 +26,15 @@ class UsuarioController < ApplicationController
     @txt_celular        = params[:txt_celular] 
     @txt_password       = params[:txt_password] 
     @txt_confirmar_password = params[:txt_confirmar_password] 
-    puts @txt_fecha_nac
+
     @fecha_formateada = Date.strptime(@txt_fecha_nac, '%m/%d/%Y')
-    puts @fecha_formateada
+    
+    if (!es_password_valido(@txt_password, @txt_confirmar_password))
+      @resultado = 'Las contraseñas no son iguales.'
+      render 'mantenimiento'
+      return
+    end
+
     usuario =  Usuario.new(:TipoUsuario => @sel_tipo_usuario,
                            :Nombres => @txt_nombre,
                            :ApellidoPaterno => @txt_ape_pat,
@@ -39,5 +49,9 @@ class UsuarioController < ApplicationController
     usuario.save
 
     redirect_to '/estacionamiento/busqueda_cliente'
+  end
+
+  def es_password_valido(password, confirmar_password)
+    return password == confirmar_password
   end
 end

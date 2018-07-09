@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "distrito", primary_key: "IdDistrito", id: :integer, default: nil, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "distrito", primary_key: "IdDistrito", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "Nombre", limit: 100, null: false
   end
 
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["Usuario_IdUsuario"], name: "fk_ServicioAdicional_Usuario1_idx"
   end
 
-  create_table "tipodocumento", primary_key: "IdTipoDocumento", id: :integer, default: nil, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "tipodocumento", primary_key: "IdTipoDocumento", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "Nombre", limit: 50, null: false
   end
 
