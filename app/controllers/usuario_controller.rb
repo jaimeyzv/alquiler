@@ -1,10 +1,9 @@
 require File.join(Rails.root, "app", "models", "Usuario.rb")
 
 class UsuarioController < ApplicationController
-  @@tipo_documentos = Usuario.find_by_sql("SELECT * FROM TipoDocumento")
-
+  
   def tipousuario
-    
+  
   end
 
   def mantenimiento
