@@ -1,4 +1,5 @@
 require File.join(Rails.root, "app", "models", "Distrito.rb")
+require File.join(Rails.root, "app", "models", "Estacionamiento.rb")
 
 class EstacionamientoController < PlantillaController
 
@@ -12,9 +13,10 @@ class EstacionamientoController < PlantillaController
   end
 
   def busqueda_cliente
-    @distritos    = Distrito.find_by_sql("SELECT * FROM Distrito ORDER BY Nombre ASC")
 
-    Rails.logger.debug("--------------> cargando busqueda" );
+    @distritos    = Distrito.find_by_sql("SELECT * FROM Distrito ORDER BY Nombre ASC")
+    @estacionamientos = Estacionamiento.find_by_sql("select * from estacionamiento ORDER BY IdEstacionamiento ASC")
+
   end
     
   def busqueda_cliente_post
@@ -24,6 +26,13 @@ class EstacionamientoController < PlantillaController
 
   def alquiler
     Rails.logger.debug("--------------> cargando alquiler" );
+    @idEstacion = params[:id] 
+    @estacionamientos = Estacionamiento.find_by_sql("select * from estacionamiento where IdEstacionamiento=" + @idEstacion)
+    
+    @estacionamientos.each do |p|
+          @estacionamiento = p
+    end
+
   end
     
   def alquiler_post

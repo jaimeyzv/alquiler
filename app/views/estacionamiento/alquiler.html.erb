@@ -3,10 +3,10 @@
 		<section class="panel">
 								<div class="panel-body">
 									<div class="thumb-info mb-md">
-										<img src=<%= image_url('Estacionamiento001.jpg') %> class="rounded img-responsive" alt="John Doe">
+										<img src=<%= image_url(@estacionamiento.Foto.to_s) %> class="rounded img-responsive" alt="John Doe">
 										<div class="thumb-info-title">
-											<span class="thumb-info-inner">120 m</span>
-											<span class="thumb-info-type">EL Sol - Lima</span>
+											<span class="thumb-info-inner"><%=@estacionamiento.Dimensiones.to_s%> m</span>
+											<span class="thumb-info-type"><%=@estacionamiento.Nombre.to_s%> - Lima</span>
 										</div>
 									</div>
 

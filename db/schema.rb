@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "distrito", primary_key: "IdDistrito", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "distrito", primary_key: "IdDistrito", id: :integer, default: nil, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "Nombre", limit: 100, null: false
   end
 

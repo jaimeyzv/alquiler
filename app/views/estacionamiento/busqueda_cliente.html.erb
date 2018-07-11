@@ -55,66 +55,19 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-            <img src=<%= image_url('Estacionamiento001.jpg') %> height="54" alt="Porto Admin" />
-            <div class="caption">
-            <h3>El Sol</h3>
-            <p>San Borja, 4*3.5 m2, S/ 12.00</p>
-            <p><a href="#" class="btn btn-default" role="button">Ver</a></p>
+
+    <%@estacionamientos.each do |p| %>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src=<%= image_url(p.Foto.to_s) %> height="54" alt="Porto Admin" />
+                    <div class="caption">
+                    <h3><%=p.Nombre.to_s %></h3>
+                    <p><%=p.Direccion.to_s %>, <%=p.Dimensiones.to_s %> m2, S/ <%=p.PrecioPorHora.to_f %></p>
+                    <p><a href="../estacionamiento/alquiler?id=<%=p.IdEstacionamiento.to_i %>" class="btn btn-default" role="button">Ver</a></p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-            <img src=<%= image_url('Estacionamiento002.jpg') %> height="54" alt="Porto Admin" />
-            <div class="caption">
-            <h3>La Luna</h3>
-            <p>Surquillo, 3*3.5 m2, S/ 8.00</p>
-            <p><a href="#" class="btn btn-default" role="button">Ver</a></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-            <img src=<%= image_url('Estacionamiento003.jpg') %> height="54" alt="Porto Admin" />
-            <div class="caption">
-            <h3>La Luna</h3>
-            <p>Surquillo, 3*3.5 m2, S/ 8.00</p>
-            <p><a href="#" class="btn btn-default" role="button">Ver</a></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-            <img src=<%= image_url('Estacionamiento001.jpg') %> height="54" alt="Porto Admin" />
-            <div class="caption">
-            <h3>El Sol</h3>
-            <p>San Borja, 4*3.5 m2, S/ 12.00</p>
-            <p><a href="#" class="btn btn-default" role="button">Ver</a></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-            <img src=<%= image_url('Estacionamiento002.jpg') %> height="54" alt="Porto Admin" />
-            <div class="caption">
-            <h3>La Luna</h3>
-            <p>Surquillo, 3*3.5 m2, S/ 8.00</p>
-            <p><a href="#" class="btn btn-default" role="button">Ver</a></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-            <img src=<%= image_url('Estacionamiento003.jpg') %> height="54" alt="Porto Admin" />
-            <div class="caption">
-            <h3>La Luna</h3>
-            <p>Surquillo, 3*3.5 m2, S/ 8.00</p>
-            <p><a href="#" class="btn btn-default" role="button">Ver</a></p>
-            </div>
-        </div>
-    </div>
+    <% end %>
 </div>
 <br>
 <div class="row">
