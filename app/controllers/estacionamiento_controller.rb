@@ -1,5 +1,6 @@
 require File.join(Rails.root, "app", "models", "Distrito.rb")
 require File.join(Rails.root, "app", "models", "Estacionamiento.rb")
+require File.join(Rails.root, "app", "models", "EstacionamientoComentario.rb")
 
 class EstacionamientoController < PlantillaController
 
@@ -13,10 +14,9 @@ class EstacionamientoController < PlantillaController
   end
 
   def busqueda_cliente
-
     @distritos    = Distrito.find_by_sql("SELECT * FROM Distrito ORDER BY Nombre ASC")
     @estacionamientos = Estacionamiento.find_by_sql("select * from estacionamiento ORDER BY IdEstacionamiento ASC")
-
+    #@estacionamientos = Estacionamiento.includes(:estacionamientocomentarios).uniq
   end
     
   def busqueda_cliente_post
