@@ -1,4 +1,4 @@
 class Estacionamiento < ActiveRecord::Base
     self.table_name = "Estacionamiento"
-    has_many :estacionamientocomentarios
+    belongs_to :distrito
 end
