@@ -68,7 +68,20 @@
 
          <!-- END: LIB JS FOOTER-->
          
-         
+         <script type="text/javascript">
+		    $(function () {
+		        $('#datetimepicker1').datetimepicker({
+		            format:'DD/MM/YYYY',
+		            maxDate: new Date()
+		        });
+
+		        $('#datetimepicker2').datetimepicker({
+		            format:'DD/MM/YYYY',
+		            maxDate: new Date()
+		        });
+
+		    });
+		</script>
 	
 	</body>
 </html>

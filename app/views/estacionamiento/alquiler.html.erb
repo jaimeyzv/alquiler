@@ -24,11 +24,11 @@
 										</div>
 										<div class="widget-content-expanded">
 											<ul class="simple-todo-list">
-												<li class="completed">San borja 210 Av Lejos</li>
+												<li class="completed"><%=@estacionamiento.Direccion.to_s%></li>
 												<li class="completed">Distrito bien ubicado</li>
-												<li class="completed">Dimensiones 4*3 m2</li>
+												<li class="completed">Dimensiones <%=@estacionamiento.Dimensiones.to_s%> m2</li>
 												<li class="completed">Tipo/Ubicaci&oacute;n exterior</li>
-												<li class="completed">Precio oferta $12.00</li>
+												<li class="completed">Precio oferta S/ <%=@estacionamiento.PrecioPorHora.to_f %></li>
 											</ul>
 										</div>
 									</div>
@@ -37,9 +37,9 @@
 
 									<h6 class="text-muted">Detalles</h6>
 									<p>Buen estacionamiento en buena ubicacion con camaras de seguridad y vigilancia constante.</p>
-									<div class="clearfix">
+									<!-- <div class="clearfix">
 										<a class="text-uppercase text-muted pull-right" href="#">(Ver mas)</a>
-									</div>
+									</div> -->
 
 									<hr class="dotted short">
 
@@ -57,6 +57,9 @@
 		<section class="panel">
 								<div class="panel-body">
 			
+			<%= form_for :usuario, :url =>{:controller => "estacionamiento", :action => "alquiler_post"} ,:method => :post,:html =>{ :class => "form-horizontal" , :id => "alquilerForm"} do |f|%>
+
+			<input type="hidden" name="id" value="<%=@idEstacion.to_s %>">
 
 									<div class="widget-toggle-expand mb-md">
 										<div class="widget-header">
@@ -66,36 +69,18 @@
 									
 										<div class="widget-content-expanded">
 											<ul class="simple-todo-list">
+
+											<%@serviciosAdicionales.each do |p| %>
+
 												<li>
-																	<div class="checkbox-custom checkbox-default">
-																		<input type="checkbox" checked="" id="todoListItem1" class="todo-check">
-																		<label class="todo-label" for="todoListItem1"><span>Lavador normal - S/10.00</span></label>
-																	</div>
+														<div class="checkbox-custom checkbox-default">
+															<input type="checkbox" value="<%=p.IdServicioAdicional.to_i %>"  name="adicionales[]" class="todo-check">
+															<label class="todo-label" ><span><%=p.Descripcion.to_s %> - S/<%=p.tarifaAdicional.to_f %></span></label>
+														</div>
 												</li>
-												<li>
-																	<div class="checkbox-custom checkbox-default">
-																		<input type="checkbox" id="todoListItem2" class="todo-check">
-																		<label class="todo-label" for="todoListItem2"><span>Lavado con cero - S/15.00</span></label>
-																	</div>
-												</li>
-												<li>
-																	<div class="checkbox-custom checkbox-default">
-																		<input type="checkbox" id="todoListItem2" class="todo-check">
-																		<label class="todo-label" for="todoListItem2"><span>Lavado interno y externo - S/ 10.00</span></label>
-																	</div>
-												</li>
-												<li>
-																	<div class="checkbox-custom checkbox-default">
-																		<input type="checkbox" id="todoListItem2" class="todo-check">
-																		<label class="todo-label" for="todoListItem2"><span>Inflado de llanta - S/5.00</span></label>
-																	</div>
-												</li>
-												<li>
-																	<div class="checkbox-custom checkbox-default">
-																		<input type="checkbox" id="todoListItem2" class="todo-check">
-																		<label class="todo-label" for="todoListItem2"><span>Pulido de tablero y panel de puerta - S/20.00</span></label>
-																	</div>
-												</li>
+
+    										<% end %>
+												
 											</ul>
 										</div>
 									</div>
@@ -106,7 +91,7 @@
 									 <div class="form-group">
 								        <label for="txt_fecha_nac" class="col-sm-3 control-label">Fecha Hora desde:</label>
 								        <div class="col-sm-9 input-group date" id='datetimepicker1'>
-								            <input type="text" class="form-control" id="txt_fecha_nac" placeholder="Fecha inicio">
+								            <input type="text" class="form-control" id="txt_fecha_ini" name="txt_fecha_ini" placeholder="Fecha inicio">
 								            <span class="input-group-addon">
 								                <span class="glyphicon glyphicon-calendar"></span>
 								            </span>
@@ -115,8 +100,8 @@
 
     								<div class="form-group">
 								        <label for="txt_fecha_nac" class="col-sm-3 control-label">Fecha Hora hasta:</label>
-								        <div class="col-sm-9 input-group date" id='datetimepicker1'>
-								            <input type="text" class="form-control" id="txt_fecha_nac" placeholder="Fecha fin">
+								        <div class="col-sm-9 input-group date" id='datetimepicker2'>
+								            <input type="text" class="form-control" id="txt_fecha_fin" name="txt_fecha_fin" placeholder="Fecha fin">
 								            <span class="input-group-addon">
 								                <span class="glyphicon glyphicon-calendar"></span>
 								            </span>
@@ -125,11 +110,11 @@
 
 								    <div class="form-group">
 								        <div class="col-sm-12 input-group">
-								            <button type="button" class="btn btn-success">Alquilar Estacionamiento</button>
+								            <button type="submit" class="btn btn-success">Alquilar Estacionamiento</button>
 								           
 								        </div>
 								    </div>
-
+  						<% end %>
 								</div>
 			</section>
 
@@ -168,4 +153,6 @@
 		</div>
 	</section>
 	</div>
+
+
 </div>
