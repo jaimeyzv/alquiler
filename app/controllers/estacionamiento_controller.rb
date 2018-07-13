@@ -30,20 +30,34 @@ class EstacionamientoController < PlantillaController
     @txt_precio_desde = params[:txt_precio_desde]
     @txt_precio_hasta = params[:txt_precio_hasta]
     @txt_puntuacion   = params[:txt_puntuacion]
+    @chck_puntos_todos  = params[:chck_puntos_todos]
 
-    puts @txt_precio_desde.inspect
-
-    @estacionamientos = Estacionamiento.joins('INNER JOIN Distrito')
-                        .where('Estacionamiento.IdDistrito = ' + @sel_distrito + ' AND Estacionamiento.IdUbicacion = ' + @sel_ubicacion + ' AND Estacionamiento.PrecioPorHora Between ' + @txt_precio_desde + ' AND ' + @txt_precio_hasta).uniq;
-
-    puts @estacionamientos.inspect
-
-    estacionamiento = Estacionamiento.first
-    #puts estacionamiento.inspect
-    #estacionamiento.distrito # returns prod1's category
-    distrito = Distrito.first
-    #puts distrito.inspect
-    #distrito.estacionamientos #returns collection of cat1's products
+    if (@chck_puntos_todos != nil)
+      @estacionamientos  = Estacionamiento.find_by_sql(
+      "SELECT TB.*
+      FROM
+      (
+        SELECT  E.*, IFNULL(EC.Puntuacion, 0) AS 'Puntuacion'
+        FROM	  Estacionamiento E LEFT JOIN EstacionamientoComentario EC
+                ON E.IdEstacionamiento = EstacionamientoComentario_IdEstacionamientoComentario
+      ) AS TB
+      WHERE	  IdDistrito = " + @sel_distrito + "
+              AND IdUbicacion = " + @sel_ubicacion + "
+              AND PrecioPorHora Between " + @txt_precio_desde + " AND " + @txt_precio_hasta )  
+    else
+      @estacionamientos  = Estacionamiento.find_by_sql(
+        "SELECT TB.*
+        FROM
+        (
+          SELECT  E.*, IFNULL(EC.Puntuacion, 0) AS 'Puntuacion'
+          FROM	  Estacionamiento E LEFT JOIN EstacionamientoComentario EC
+                  ON E.IdEstacionamiento = EstacionamientoComentario_IdEstacionamientoComentario
+        ) AS TB
+        WHERE	  IdDistrito = " + @sel_distrito + "
+                AND IdUbicacion = " + @sel_ubicacion + "
+                AND PrecioPorHora Between " + @txt_precio_desde + " AND " + @txt_precio_hasta + "
+                AND Puntuacion = " + @txt_puntuacion)
+    end
 
     render "busqueda_cliente"
   end
