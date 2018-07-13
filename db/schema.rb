@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "distrito", primary_key: "IdDistrito", id: :integer, default: nil, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "distrito", primary_key: "IdDistrito", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "Nombre", limit: 100, null: false
   end
 
@@ -53,10 +53,9 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["IdUsuario"], name: "fk_EstacionamientoComentario_Usuario1_idx"
   end
 
-  create_table "estacionamientoservicioadicional", primary_key: "IdEstacionamientoServicioAdicional", id: :integer, default: nil, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "estacionamientoservicioadicional", primary_key: "IdEstacionamientoServicioAdicional", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "IdEstacionamiento", null: false
     t.integer "IdServicioAdicional", null: false
-    t.decimal "tarifaAdicional", precision: 10, scale: 2
     t.index ["IdEstacionamiento"], name: "fk_EstacionamientoServicioAdicional_Estacionamiento1_idx"
     t.index ["IdServicioAdicional"], name: "fk_EstacionamientoServicioAdicional_ServicioAdicional1_idx"
   end
