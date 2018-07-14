@@ -26,31 +26,30 @@
 							<span>Estacionamiento</span>
 						</a>
 						<ul class="nav nav-children">
-								<li>
-									<a href="../estacionamiento/mantenimiento">
-											Registrar
-									</a>
-								</li>
-						
-								<li>
-									<a href="../estacionamiento/busqueda_dueno">
-											Buscar (Dueño)
-									</a>
-								</li>
-
-								<li>
-									<a href="../estacionamiento/busqueda_cliente">
-											Buscar (Cliente)
-									</a>
-								</li>
-
-								<li>
-									<a href="../estacionamiento/buscar_alquilados">
-											Buscar Alquilados (Dueño)
-									</a>
-								</li>
-
-								
+							<% if session[:perfil_usuario] && session[:perfil_usuario] =="D" %>
+							<li>
+								<a href="../estacionamiento/mantenimiento">
+										Registrar
+								</a>
+							</li>
+							<li>
+								<a href="../estacionamiento/busqueda_dueno">
+										Buscar
+								</a>
+							</li>
+							<li>
+								<a href="../estacionamiento/buscar_alquilados">
+										Buscar Alquilados
+								</a>
+							</li>
+							<% end %>
+							<% if session[:perfil_usuario] && session[:perfil_usuario] =="C" %>
+							<li>
+								<a href="../estacionamiento/busqueda_cliente">
+										Buscar
+								</a>
+							</li>
+							<% end %>
 						</ul>
 					</li>
 					<li class="nav-parent">

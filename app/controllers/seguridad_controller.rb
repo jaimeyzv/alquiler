@@ -28,6 +28,7 @@ class SeguridadController < ApplicationController
           cookies[:id_usuario] = usr.IdUsuario.to_i
           cookies[:nombre_usuario] = usr.Nombres.to_s
           cookies[:perfil_usuario] = usr.TipoUsuario.to_s
+          session[:perfil_usuario] = usr.TipoUsuario.to_s
          # Rails.logger.debug("sesion--------------> " + usr.Nombres.to_s)
         end
        if usr == nil
@@ -38,9 +39,21 @@ class SeguridadController < ApplicationController
     if usr == nil
        render "login"
     else
-       redirect_to '/estacionamiento/busqueda_cliente'
+      if(usr.TipoUsuario.to_s == "C")
+        redirect_to '/estacionamiento/busqueda_cliente'
+      else
+        redirect_to '/estacionamiento/busqueda_dueno'
+      end
     end
 
   end
 
+  def cerrar_session
+    cookies.delete(:id_usuario)
+    cookies.delete(:nombre_usuario)
+    cookies.delete(:perfil_usuario)
+    session.delete(:perfil_usuario)
+
+    redirect_to '/seguridad/login'
+  end
 end

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get 'seguridad/login'
   post 'seguridad/login_post'
+  get 'seguridad/cerrar_session'
 
   get 'estacionamiento/busqueda_dueno'
   post 'estacionamiento/busqueda_dueno_post'

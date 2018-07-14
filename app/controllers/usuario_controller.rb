@@ -72,6 +72,7 @@ class UsuarioController < ApplicationController
           cookies[:id_usuario] = usr.IdUsuario.to_i
           cookies[:nombre_usuario] = usr.Nombres.to_s
           cookies[:perfil_usuario] = usr.TipoUsuario.to_s
+          session[:perfil_usuario] = usr.TipoUsuario.to_s
          # Rails.logger.debug("sesion--------------> " + usr.Nombres.to_s)
         end
        if usr == nil
