@@ -4,6 +4,7 @@ require File.join(Rails.root, "app", "models", "EstacionamientoComentario.rb")
 require File.join(Rails.root, "app", "models", "Servicioadicional.rb")
 require File.join(Rails.root, "app", "models", "TipoEstacionamiento.rb")
 require File.join(Rails.root, "app", "models", "Estacionamientoxalquiler.rb")
+require File.join(Rails.root, "app", "models", "EstacionamientoServicioAdicional.rb")
 require File.join(Rails.root, "app", "models", "Estacionamientoalquilerservicioadicional.rb")
 
 class EstacionamientoController < PlantillaController
@@ -167,9 +168,12 @@ class EstacionamientoController < PlantillaController
     @txt_fecha_hasta  = params[:txt_fecha_hasta]
 
     @estacionamientos  = Estacionamiento.find_by_sql(
-      "SELECT	E.*
+      "SELECT	E.*, D.Nombre AS 'NombreDistrito', TE.Nombre AS 'NombreTipoEstacionamiento'
       FROM	EstacionamientoxAlquiler EXA INNER JOIN ESTACIONAMIENTO E
-            ON EXA.IdEstacionamiento = E.IdEstacionamiento");
+            ON EXA.IdEstacionamiento = E.IdEstacionamiento
+            INNER JOIN Distrito D ON E.IdDistrito = D.IdDistrito
+            INNER JOIN TipoEstacionamiento TE
+            ON E.IdTipoEstacionamiento = TE.IdTipoEstacionamiento");
 
 
   end
@@ -179,13 +183,26 @@ class EstacionamientoController < PlantillaController
     @txt_fecha_hasta  = params[:txt_fecha_hasta]
 
     @estacionamientos  = Estacionamiento.find_by_sql(
-      "SELECT	E.*
+      "SELECT	E.*, D.Nombre AS 'NombreDistrito', TE.Nombre AS 'NombreTipoEstacionamiento'
       FROM	EstacionamientoxAlquiler EXA INNER JOIN ESTACIONAMIENTO E
           ON EXA.IdEstacionamiento = E.IdEstacionamiento
-      WHERE	EXA.FechaInicio >= '" + @txt_fecha_desde + "' AND EXA.FechaFin <= '" + @txt_fecha_hasta +"';"
+          INNER JOIN Distrito D ON E.IdDistrito = D.IdDistrito
+          INNER JOIN TipoEstacionamiento TE
+          ON E.IdTipoEstacionamiento = TE.IdTipoEstacionamiento
+      WHERE	(EXA.FechaInicio >= '" + @txt_fecha_desde + "' AND EXA.FechaFin <= '" + @txt_fecha_hasta +"');"
     );
 
     render 'buscar_alquilados'
   end
 
+  def eliminar_estacionamiento_post
+    
+    @id_estacionamiento = params[:hd_busqueda_dueno_id_estacionamiento]
+    #EstacionamientoServicioAdicional.find_by_sql("DELETE FROM estacionamientoservicioadicional WHERE IdEstacionamiento = " + @id_estacionamiento);
+    #Estacionamiento.delete(@id_estacionamiento);
+    EstacionamientoServicioAdicional.where(IdEstacionamiento: @id_estacionamiento).destroy_all
+    Estacionamiento.where(IdEstacionamiento: @id_estacionamiento).destroy_all
+
+    redirect_to '/estacionamiento/busqueda_dueno'
+  end
 end

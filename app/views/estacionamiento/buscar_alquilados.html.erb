@@ -49,25 +49,14 @@
                     <%@estacionamientos.each do |p| %>
 						<tr>
 							<td><%=p.Nombre.to_s %></td>
-							<td>Av San Borja 1440</td>
-							<td>San Borja</td>
-							<td>S/ 12.00</td>
-							<td>4*3 m2</td>
-							<td>Interior</td>
-							<td>Sótano 4</td>
+							<td><%=p.Direccion.to_s %></td>
+							<td><%=p.NombreDistrito.to_s %></td>
+							<td>S/ <%=p.PrecioPorHora.round(2).to_s %></td>
+							<td><%=p.Dimensiones.to_s %> m2</td>
+							<td><%=p.NombreTipoEstacionamiento %> </td>
 							<td><a href="#">Editar</a> | <a href="#">Eliminar</a></td>
 						</tr>
 					<% end %>
-                        <tr>
-                            <td>El Sol</td>
-                            <td>Av San Borja 1440</td>
-                            <td>San Borja</td>
-                            <td>S/ 12.00</td>
-                            <td>4*3 m2</td>
-                            <td>Interior</td>
-                            <td>Sótano 4</td>
-                            <td><a href="#">Editar</a> | <a href="#">Eliminar</a></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

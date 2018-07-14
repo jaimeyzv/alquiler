@@ -6,7 +6,7 @@
 		<%= csrf_meta_tags %>
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
      	<!-- Librerias cabecera:end -->
-
+		 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	</head>
 	<body>
 		<section class="body">
@@ -64,7 +64,7 @@
 
 	 <!-- START: LIB JS FOOTER-->
 <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
          <!-- END: LIB JS FOOTER-->
          
          <script type="text/javascript">
@@ -99,7 +99,12 @@
 		            } else {
 		                $("#txt_puntuacion").prop('disabled', false);
 		            }
-		        });
+				});
+				
+				$(".btn-eliminar-busqueda-dueno").click(function() {
+					$("#hd_busqueda_dueno_id_estacionamiento").val($(this).attr("id-estacionamiento"))
+		            $("#dialog").dialog();
+				});
 		    });    
 		</script>
 	

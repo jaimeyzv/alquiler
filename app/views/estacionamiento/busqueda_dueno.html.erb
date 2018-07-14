@@ -37,7 +37,7 @@
 							<td>S/ <%=p.PrecioPorHora.round(2).to_s %></td>
 							<td><%=p.Dimensiones.to_s %> m2</td>
 							<td><%=p.NombreTipoEstacionamiento %> </td>
-							<td><a href="#">Editar</a> | <a href="#">Eliminar</a></td>
+							<td><a href="#">Editar</a> | <a href="#" class="btn-eliminar-busqueda-dueno" id-estacionamiento="<%=p.IdEstacionamiento.to_s %>">Eliminar</a></td>
 						</tr>
 					<% end %>
 					</tbody>
@@ -46,4 +46,11 @@
 		</div>
 	</section>
 	</div>
+</div>
+<div id="dialog" title="Eliminar Estacionamiento" style="display: none;">
+	<p>¿Está seguro de eliminar este estacionamiento?</p>	
+  	<%= form_for :estacionamiento, :url =>{:controller => "estacionamiento", :action => "eliminar_estacionamiento_post"} ,:method => :post,:html =>{ :class => "form-horizontal" , :id => "form_usuario_mantenimiento"} do |f|%>
+		<button type="submit" class="btn btn-primary mb-2">Eliminar</button>
+		<input id="hd_busqueda_dueno_id_estacionamiento" name="hd_busqueda_dueno_id_estacionamiento" type="hidden" value="">
+	<% end %>	
 </div>
