@@ -26,7 +26,7 @@ class UsuarioController < ApplicationController
     @txt_password       = params[:txt_password] 
     @txt_confirmar_password = params[:txt_confirmar_password] 
 
-    @fecha_formateada = Date.strptime(@txt_fecha_nac, '%m/%d/%Y')
+    @fecha_formateada = Date.strptime(obtener_fecha_mmddyyyy(@txt_fecha_nac), '%m/%d/%Y')
     
     if (!es_password_valido(@txt_password, @txt_confirmar_password))
       @resultado = 'Las contraseñas no son iguales.'
@@ -41,7 +41,7 @@ class UsuarioController < ApplicationController
                            :Sexo => @sel_sexo,
                            :Correo => @txt_correo,
                            :Contrasenia => @txt_password,
-                           :FechaNacimiento => @fecha_formateada.to_date,
+                           :FechaNacimiento => @fecha_formateada,
                            :Celular => @txt_celular,
                            :FechaRegistro => Date.today,
                            :TipoDocumento_IdTipoDocumento => @sel_tipo_doc)
@@ -52,5 +52,9 @@ class UsuarioController < ApplicationController
 
   def es_password_valido(password, confirmar_password)
     return password == confirmar_password
+  end
+
+  def obtener_fecha_mmddyyyy(fecha)
+    return (fecha[3, 2].to_i).to_s + "/" + (fecha[0, 2].to_i).to_s + "/" + fecha[6, 4]
   end
 end
