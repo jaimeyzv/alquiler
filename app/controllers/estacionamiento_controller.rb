@@ -9,6 +9,69 @@ require File.join(Rails.root, "app", "models", "Estacionamientoalquilerservicioa
 
 class EstacionamientoController < PlantillaController
 
+def mantenimiento
+  Rails.logger.debug("--------------> cargando mantenimiento" );
+  @distritos    = Distrito.find_by_sql("SELECT * FROM Distrito ORDER BY Nombre ASC")
+  @tipos    = TipoEstacionamiento.find_by_sql("SELECT * FROM tipoEstacionamiento ORDER BY Nombre ASC")
+  @adicionales = Servicioadicional.find_by_sql("select * from servicioadicional")
+
+end
+
+def mantenimiento_post
+    Rails.logger.debug("--------------> cargando mantenimiento_post" );
+    @txtNombre     = params[:txtNombre]
+    @txtDireccion    = params[:txtDireccion]
+    @sel_distrito = params[:sel_distrito]
+    @txtLatitud = params[:txtLatitud]
+    @txtLongitud   = params[:txtLongitud]
+    @txtTelefono  = params[:txtTelefono]
+    @txtPrecio  = params[:txtPrecio]
+    @txtFoto  = params[:txtFoto]
+    @txtDimension  = params[:txtDimension]
+    @sel_tipo  = params[:sel_tipo]
+
+    @adicionales = params[:adicionales]
+
+    nuevoidEstacion = obtenerCantidaEstacionamientos()
+
+    nuevoEstacionamiento = Estacionamiento.new(:IdUsuario => 1,
+      :Nombre => @txtNombre,
+      :Direccion => @txtDireccion,
+      :Latitud => @txtLatitud,
+      :Longitud => @txtLongitud,
+      :TelefonoFijo => @txtTelefono,
+      :PrecioPorHora => @txtPrecio.to_f,
+      :Foto => @txtFoto,
+      :Dimensiones => @txtDimension.to_i,
+      :IdTipoEstacionamiento => @sel_tipo.to_i,
+      :IdUbicacion => 1,
+      :FechaRegistro => Date.today,
+      :IdDistrito => @sel_distrito)
+
+    nuevoEstacionamiento.save
+
+      @adicionales.map { |m| 
+              puts m
+              datos = m.to_s.split('-') 
+              puts datos
+
+              nuevoServicioAdicional = EstacionamientoServicioAdicional.new(:IdEstacionamiento => nuevoidEstacion,
+                :IdServicioAdicional => datos[0].to_i,
+                :tarifaAdicional => datos[1].to_f)
+              nuevoServicioAdicional.save
+
+      }
+
+    Rails.logger.debug("--------------> datos guardados" );
+
+     @distritos    = Distrito.find_by_sql("SELECT * FROM Distrito ORDER BY Nombre ASC")
+     @tipos    = TipoEstacionamiento.find_by_sql("SELECT * FROM tipoEstacionamiento ORDER BY Nombre ASC")
+     @adicionales = Servicioadicional.find_by_sql("select * from servicioadicional")
+
+    render "mantenimiento"
+    #redirect_to '/estacionamiento/mantenimiento'
+  end
+
   def busqueda_dueno
     @estacionamientos  = Estacionamiento.find_by_sql(
     "SELECT	E.*, D.Nombre AS 'NombreDistrito', TE.Nombre AS 'NombreTipoEstacionamiento'
@@ -108,52 +171,53 @@ class EstacionamientoController < PlantillaController
       @fecha_formateada1 = Date.strptime(@txt_fecha_ini, '%d/%m/%Y')
       @fecha_formateada2 = Date.strptime(@txt_fecha_fin, '%d/%m/%Y')
 
-      @estacionamiento = nil
       total = 0
 
-      @adicionales.map { |m| 
-        @serviciosAdicionales = Servicioadicional.find_by_sql("select * from servicioadicional sa 
-          inner join estacionamientoservicioadicional esa on sa.IdServicioAdicional=esa.IdServicioAdicional
-          inner join estacionamiento esta on esa.IdEstacionamiento=esta.IdEstacionamiento
-          where esa.IdEstacionamiento="+@idEstacion + " and esa.IdServicioAdicional="+ m)
-
-        @serviciosAdicionales.each do |p|
-          @estacionamiento = p
-          total = total + p.tarifaAdicional.to_f
+      @estacionamientos = Estacionamiento.find_by_sql("select * from estacionamiento where IdEstacionamiento=" + @idEstacion)
+        @estacionamientos.each do |p|
+            @estacionamiento = p
         end
-      }
+
+      if(@adicionales != nil)
+            @adicionales.map { |m| 
+              @serviciosAdicionales = Servicioadicional.find_by_sql("select * from servicioadicional sa 
+                inner join estacionamientoservicioadicional esa on sa.IdServicioAdicional=esa.IdServicioAdicional
+                inner join estacionamiento esta on esa.IdEstacionamiento=esta.IdEstacionamiento
+                where esa.IdEstacionamiento="+@idEstacion + " and esa.IdServicioAdicional="+ m)
+
+              @serviciosAdicionales.each do |p|
+                total = total + p.tarifaAdicional.to_f
+              end
+            }
+       end
 
       total = total + @estacionamiento.PrecioPorHora
+
+      idNuevoAlquilado = obtenerCantidadAlquilados()
 
       nuevoAlquiler = Estacionamientoxalquiler.new(:FechaInicio => @fecha_formateada1.to_date,
         :FechaFin => @fecha_formateada2.to_date,
         :PrecioTotal => total.to_f,
         :FechaRegistro => Date.today,
-        :IdEstacionamiento => @estacionamiento.IdEstacionamiento.to_i,
+        :IdEstacionamiento => @idEstacion.to_i,
         :Usuario_IdUsuario => 1)
 
       nuevoAlquiler.save
 
-      # falta cargar id del nuevo alquiler en IdEstacionamiento
-      @adicionales.map { |m| 
-        @serviciosAdicionales = Servicioadicional.find_by_sql("select * from servicioadicional sa 
-          inner join estacionamientoservicioadicional esa on sa.IdServicioAdicional=esa.IdServicioAdicional
-          inner join estacionamiento esta on esa.IdEstacionamiento=esta.IdEstacionamiento
-          where esa.IdEstacionamiento="+@idEstacion + " and esa.IdServicioAdicional="+ m)
+      if(@adicionales != nil)
+            @adicionales.map { |m| 
+              @serviciosAdicionales = Servicioadicional.find_by_sql("select * from servicioadicional sa 
+                inner join estacionamientoservicioadicional esa on sa.IdServicioAdicional=esa.IdServicioAdicional
+                inner join estacionamiento esta on esa.IdEstacionamiento=esta.IdEstacionamiento
+                where esa.IdEstacionamiento="+@idEstacion + " and esa.IdServicioAdicional="+ m)
 
-        @serviciosAdicionales.each do |p|
-          nuevoServicio = Estacionamientoalquilerservicioadicional.new(:IdServicioAdicional => p.IdServicioAdicional.to_i,
-            :AlquilerEstacionamiento_IdAlquilerEstacionamiento => p.IdEstacionamiento.to_i)
-          nuevoServicio.save
-        end
-      }
-
-
-
-      @estacionamientos = Estacionamiento.find_by_sql("select * from estacionamiento where IdEstacionamiento=" + @idEstacion)
-      @estacionamientos.each do |p|
-          @estacionamiento = p
-      end
+              @serviciosAdicionales.each do |p|
+                nuevoServicio = Estacionamientoalquilerservicioadicional.new(:IdServicioAdicional => p.IdServicioAdicional.to_i,
+                  :AlquilerEstacionamiento_IdAlquilerEstacionamiento => idNuevoAlquilado)
+                nuevoServicio.save
+              end
+            }
+       end
 
       @serviciosAdicionales = Servicioadicional.find_by_sql("select * from servicioadicional sa 
         inner join estacionamientoservicioadicional esa on sa.IdServicioAdicional=esa.IdServicioAdicional
@@ -205,4 +269,27 @@ class EstacionamientoController < PlantillaController
 
     redirect_to '/estacionamiento/busqueda_dueno'
   end
+
+   def obtenerCantidadAlquilados
+    estacionAlquiler = Estacionamientoxalquiler.find_by_sql("select * from estacionamientoxalquiler")
+    cantidad = 0
+      estacionAlquiler.each do |p|
+          cantidad = cantidad + 1
+      end
+
+      return (cantidad + 1)
+
+  end
+
+  def obtenerCantidaEstacionamientos
+    estacionAlquiler = Estacionamiento.find_by_sql("select * from estacionamiento")
+    cantidad = 0
+      estacionAlquiler.each do |p|
+          cantidad = cantidad + 1
+      end
+
+      return (cantidad + 1)
+
+  end
+
 end
