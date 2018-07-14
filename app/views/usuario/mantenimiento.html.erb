@@ -7,19 +7,19 @@
     <div class="form-group">
         <label for="txt_nombre" class="col-sm-3 control-label">Nombre</label>
         <div class="col-sm-9">
-        <input type="text" class="form-control" id="txt_nombre" name="txt_nombre" placeholder="Nombre" value="<%=@txt_nombre == nil ? '' : @txt_nombre %>" required>
+        <input type="text" class="form-control" id="txt_nombre" name="txt_nombre" placeholder="Nombre" value="<%=@txt_nombre == nil ? '' : @txt_nombre %>" pattern="[a-zA-Z]*" required>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_ape_pat" class="col-sm-3 control-label">Apellido Paterno</label>
         <div class="col-sm-9">
-        <input type="text" class="form-control" id="txt_ape_pat" name="txt_ape_pat" placeholder="Apellido Paterno" value="<%=@txt_ape_pat == nil ? '' : @txt_ape_pat %>" required>
+        <input type="text" class="form-control" id="txt_ape_pat" name="txt_ape_pat" placeholder="Apellido Paterno" value="<%=@txt_ape_pat == nil ? '' : @txt_ape_pat %>" pattern="[a-zA-Z]*" required>
         </div>
     </div>
     <div class="form-group">
         <label for="txt_ape_mat" class="col-sm-3 control-label">Apellido Materno</label>
         <div class="col-sm-9">
-        <input type="text" class="form-control" id="txt_ape_mat" name="txt_ape_mat" placeholder="Apellido Materno" value="<%=@txt_ape_mat == nil ? '' : @txt_ape_mat %>" required>
+        <input type="text" class="form-control" id="txt_ape_mat" name="txt_ape_mat" placeholder="Apellido Materno" value="<%=@txt_ape_mat == nil ? '' : @txt_ape_mat %>" pattern="[a-zA-Z]*" required>
         </div>
     </div>
     <div class="form-group">
@@ -44,7 +44,7 @@
     <div class="form-group">
         <label for="txt_num_doc" class="col-sm-3 control-label">Número Documento</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="txt_num_doc" name="txt_num_doc" placeholder="Número Documento" value="<%=@txt_num_doc == nil ? '' : @txt_num_doc %>" maxlength="8" required>
+            <input type="text" class="form-control" id="txt_num_doc" name="txt_num_doc" placeholder="Número Documento" value="<%=@txt_num_doc == nil ? '' : @txt_num_doc %>" maxlength="8" pattern="[0-9]*" required>
         </div>
     </div>
     <div class="form-group">
@@ -59,7 +59,7 @@
     <div class="form-group">
         <label for="txt_correo" class="col-sm-3 control-label">Correo</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="txt_correo" name="txt_correo" placeholder="Correo" value="<%=@txt_correo == nil ? '' : @txt_correo %>" required>
+            <input type="text" class="form-control" id="txt_correo" name="txt_correo" placeholder="Correo" value="<%=@txt_correo == nil ? '' : @txt_correo %>" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required>
         </div>
     </div>
     <div class="form-group">
@@ -74,7 +74,7 @@
     <div class="form-group">
         <label for="txt_celular" class="col-sm-3 control-label">Celular</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="txt_celular" name="txt_celular" placeholder="Celular" value="<%=@txt_celular == nil ? '' : @txt_celular %>" maxlength="9" required>
+            <input type="text" class="form-control" id="txt_celular" name="txt_celular" placeholder="Celular" value="<%=@txt_celular == nil ? '' : @txt_celular %>" maxlength="9" pattern="[0-9]*" required>
         </div>
     </div>
     <div class="form-group">
@@ -90,9 +90,11 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-9">
-            <!--<a href="../estacionamiento/busqueda_cliente" class="btn btn-default">Crear</a>-->
+        <div class="col-sm-offset-3 col-sm-3">
             <button type="submit" class="btn btn-primary mb-2">Crear</button>
+        </div>
+        <div class="col-sm-offset-1 col-sm-3">
+            <a href="../seguridad/login" class="btn btn-default">Ir a Login</a>
         </div>
     </div>
     
