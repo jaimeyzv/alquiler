@@ -3,83 +3,87 @@
 		<section class="panel panel-featured panel-featured-danger animated fadeInRight">
         <div class="panel-body">
             <h4>Registrar Estacionamiento</h4>
-            <form class="form" role="form">
+           
+            <%= form_for :mantenimiento, :url =>{:controller => "estacionamiento", :action => "mantenimiento_post"} ,:method => :post,:html =>{ :class => "form-horizontal" , :id => "mantenimientoForm"} do |f|%>
                 <div class="row">
                     <div class="col-sm-6">
                         <fieldset>
                             <legend>Información</legend>
                             <div class="form-group">
-                                <label for="txt_ubicacion" class="col-sm-5 control-label">Nombre</label>
+                                <label for="txtNombre" class="col-sm-5 control-label">Nombre</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" name="txtNombre" class="form-control" placeholder="Primavera" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="txt_ubicacion" class="col-sm-5 control-label">Dirección</label>
+                                <label for="txtDireccion" class="col-sm-5 control-label">Dirección</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" name="txtDireccion" class="form-control" placeholder="Puente Piedra" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="txt_ubicacion" class="col-sm-5 control-label">Distrito</label>
+                                <label for="sel_distrito" class="col-sm-5 control-label">Distrito</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" placeholder="">
+                                     <select id="sel_distrito" name="sel_distrito" class="form-control">
+                                        <%@distritos.each do |p| %>
+                                        <option value="<%=p.IdDistrito.to_s%>"><%=p.Nombre.to_s %></option>
+                                        <% end %>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="txt_ubicacion" class="col-sm-5 control-label">Google Lat.</label>
+                                <label for="txtLatitud" class="col-sm-5 control-label">Google Lat.</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" name="txtLatitud" class="form-control" placeholder="1204" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="txt_ubicacion" class="col-sm-5 control-label">Google Lon.</label>
+                                <label for="txtLongitud" class="col-sm-5 control-label">Google Lon.</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" name="txtLongitud" class="form-control" placeholder="1230" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="txt_ubicacion" class="col-sm-5 control-label">Teléfono</label>
+                                <label for="txtTelefono" class="col-sm-5 control-label">Teléfono</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" name="txtTelefono" class="form-control" placeholder="867547384" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="txt_ubicacion" class="col-sm-5 control-label">Precio Hora</label>
+                                <label for="txtPrecio" class="col-sm-5 control-label">Precio Hora</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="number" name="txtPrecio" class="form-control" placeholder="50" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="txt_ubicacion" class="col-sm-5 control-label">Foto</label>
+                                <label for="txtFoto" class="col-sm-5 control-label">Foto</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" name="txtFoto" class="form-control" placeholder=".../.../image.jpg" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="txt_ubicacion" class="col-sm-5 control-label">Dimensiones</label>
+                                <label for="txtDimension" class="col-sm-5 control-label">Dimensiones</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" name="txtDimension" class="form-control" placeholder="124" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="txt_ubicacion" class="col-sm-5 control-label">Tipo</label>
+                                <label for="sel_tipo" class="col-sm-5 control-label">Tipo Estacionamiento</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" placeholder="">
+                                    <select id="sel_tipo" name="sel_tipo" class="form-control">
+                                        <%@tipos.each do |p| %>
+                                        <option value="<%=p.IdTipoEstacionamiento.to_s%>"><%=p.Nombre.to_s %></option>
+                                        <% end %>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="txt_ubicacion" class="col-sm-5 control-label">Ubicación</label>
-                                <div class="col-sm-7">
-                                    <input type="text" class="form-control" placeholder="">
-                                </div>
-                            </div>
+                            
                         </fieldset>
                     </div>
                     <div class="col-sm-6">
                         <fieldset>
                             <legend>Selección de Servicios</legend>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="txt_ubicacion" class="col-sm-5 control-label">Nuevo Servicio</label>
                                 <div class="col-sm-7">
                                     <input type="text" class="form-control" placeholder="">
@@ -90,41 +94,43 @@
                                 <div class="col-sm-7">
                                     <input type="text" class="form-control" placeholder="">
                                 </div>
-                            </div>
+                            </div> 
+
                             <div class="right" style="text-align: right;">
                                 <button type="submit" class="btn btn-info">Agregar</button>
-                            </div>
+                            </div>  -->
+                        <%@adicionales.each do |p| %>
                             <div class="form-group">
-                                <div class="col-sm-12">
+                                <div class="col-sm-8">
                                     <div class="checkbox-custom checkbox-default">
-                                        <input id="chb1" name="chb1" type="checkbox"/>
-                                        <label for="chb1">Lavado normal - S/ 10.00</label>
-                                    </div>
-                                    <div class="checkbox-custom checkbox-default">
-                                        <input id="chb2" name="chb2" type="checkbox"/>
-                                        <label for="chb2">Lavado con cera - S/ 15.00</label>
-                                    </div>
-                                    <div class="checkbox-custom checkbox-default">
-                                        <input id="chb3" name="chb3" type="checkbox"/>
-                                        <label for="chb3">Lavado interno y externo normal - S/ 20.00</label>
-                                    </div>
-                                    <div class="checkbox-custom checkbox-default">
-                                        <input id="chb4" name="chb4" type="checkbox"/>
-                                        <label for="chb4">Lavado interno y externo con cera - S/ 25.00</label>
-                                    </div>
-                                    <div class="checkbox-custom checkbox-default">
-                                        <input id="chb5" name="chb5" type="checkbox"/>
-                                        <label for="chb5">Inflado de lantas - S/ 2.00</label>
+                                        <input  id="<%=p.IdServicioAdicional.to_i%>" name="adicionales[]" value="<%=p.IdServicioAdicional.to_i %>" type="checkbox"/>
+                                        <label ><%=p.Descripcion.to_s %> - </label>
+                                        <input type="text" class="formFree" id="_<%=p.IdServicioAdicional.to_i%>"
+                                            value="0" size="5" onkeyup="agregarPrecio('<%=p.IdServicioAdicional.to_i%>');" 
+                                            style="font-weight: bold; text-align: center;">
                                     </div>
                                 </div>
                             </div>
+                         <% end %>   
                         </fieldset>
                     </div>
                 </div>
                 <div class="row center" style="margin-top: 20px;">
-                    <button type="submit" class="btn btn-success">Registrar</button>
+                    <button type="submit" class="btn btn-success">Registrar estacionamiento</button>
                 </div>
-			</form>
+
+
+                <script>
+                    function agregarPrecio(adicional) {
+                       var precio = document.getElementById("_"+adicional).value;
+                       document.getElementById(""+adicional).value = ""+adicional+"-"+precio;
+                    }
+                    
+                </script>
+
+
+
+			<% end %>
 		</div>
 	</section>
 	</div>
