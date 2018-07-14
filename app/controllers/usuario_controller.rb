@@ -47,7 +47,7 @@ class UsuarioController < ApplicationController
                            :TipoDocumento_IdTipoDocumento => @sel_tipo_doc)
     usuario.save
 
-    redirect_to '/estacionamiento/busqueda_cliente'
+    logeo_despues_crear(@txt_correo, @txt_password)
   end
 
   def es_password_valido(password, confirmar_password)
@@ -56,5 +56,37 @@ class UsuarioController < ApplicationController
 
   def obtener_fecha_mmddyyyy(fecha)
     return (fecha[3, 2].to_i).to_s + "/" + (fecha[0, 2].to_i).to_s + "/" + fecha[6, 4]
+  end
+
+  def logeo_despues_crear(usuario, contrasena)
+    
+    @usuarios = Usuario.find_by_sql("SELECT * FROM usuario where correo ='"+ usuario +"' and contrasenia='"+ contrasena +"'")
+    
+    if @usuarios.nil?
+        Rails.logger.debug("--------------> esta vacio!... ")
+        @resultado = "Usuario o password inválidos"
+    else
+      usr = nil
+        @usuarios.each do |p|
+          usr = p
+          cookies[:id_usuario] = usr.IdUsuario.to_i
+          cookies[:nombre_usuario] = usr.Nombres.to_s
+          cookies[:perfil_usuario] = usr.TipoUsuario.to_s
+         # Rails.logger.debug("sesion--------------> " + usr.Nombres.to_s)
+        end
+       if usr == nil
+        @resultado = "Usuario o password inválidos"
+       end
+    end 
+
+    if usr == nil
+       render "login"
+    else
+      if(usr.TipoUsuario.to_s == "C")
+        redirect_to '/estacionamiento/busqueda_cliente'
+      else
+        redirect_to '/estacionamiento/busqueda_dueno'
+      end
+    end
   end
 end
