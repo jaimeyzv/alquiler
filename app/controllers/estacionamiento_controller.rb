@@ -69,7 +69,6 @@ def mantenimiento_post
      @adicionales = Servicioadicional.find_by_sql("select * from servicioadicional")
 
     render "mantenimiento"
-    #redirect_to '/estacionamiento/mantenimiento'
   end
 
   def busqueda_dueno
