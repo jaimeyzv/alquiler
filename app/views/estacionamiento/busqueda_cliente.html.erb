@@ -15,16 +15,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="txt_ubicacion" class="col-sm-2 control-label">Ubicación</label>
+                <label for="sel_tipo_estacionaminto" class="col-sm-2 control-label">Tipo Ubicación</label>
                 <div class="col-sm-10">
-                    <select id="sel_ubicacion" name="sel_ubicacion" class="form-control">
-                        <option value="1" <%=@sel_ubicacion == "1" ? 'selected' : '' %>>1er Piso</option>
-                        <option value="2" <%=@sel_ubicacion == "2" ? 'selected' : '' %>>Sótano 1</option>
-                        <option value="3" <%=@sel_ubicacion == "3" ? 'selected' : '' %>>Sótano 2</option>
-                        <option value="4" <%=@sel_ubicacion == "4" ? 'selected' : '' %>>Sótano 3</option>
-                        <option value="5" <%=@sel_ubicacion == "5" ? 'selected' : '' %>>Sótano 4</option>
-                        <option value="6" <%=@sel_ubicacion == "6" ? 'selected' : '' %>>Sótano 5</option>
-                        <option value="7" <%=@sel_ubicacion == "7" ? 'selected' : '' %>>Sótano 6</option>
+                    <select id="sel_tipo_estacionaminto" name="sel_tipo_estacionaminto" class="form-control">
+                        <%@tipoEstacionamientos.each do |p| %>
+                        <option value="<%=p.IdTipoEstacionamiento.to_s%>" <%=p.IdTipoEstacionamiento.to_s == @sel_tipo_estacionaminto ? 'selected' : '' %>><%=p.Nombre.to_s %></option>
+                        <% end %>
                     </select>
                 </div>
             </div>
@@ -70,7 +66,7 @@
                 <div class="thumbnail">
                     <img src=<%= image_url(p.Foto.to_s) %> height="54" alt="Porto Admin" />
                     <div class="caption">
-                    <h3><%=p.Nombre.to_s %></h3>
+                    <h3><a href="../estacionamiento/alquiler?id=<%=p.IdEstacionamiento %>"><%=p.Nombre.to_s %></a></h3>
                     <p><%=p.Direccion.to_s %>, <%=p.Dimensiones.to_s %> m2, S/ <%=p.PrecioPorHora.to_f %></p>
                     <p><a href="../estacionamiento/alquiler?id=<%=p.IdEstacionamiento.to_i %>" class="btn btn-default" role="button">Ver</a></p>
                     </div>

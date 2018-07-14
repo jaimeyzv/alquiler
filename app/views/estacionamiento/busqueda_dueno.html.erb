@@ -3,18 +3,19 @@
 		<section class="panel panel-featured panel-featured-danger animated fadeInRight">
 		<div class="panel-body">
 			<h4>Buscar Estacionamiento</h4>
-			<form class="navbar-form navbar-left" role="search">
+			<%= form_for :estacionamiento, :url =>{:controller => "estacionamiento", :action => "busqueda_dueno_post"} ,:method => :post,:html =>{ :class => "form-horizontal" , :id => "form_busqueda_dueno"} do |f|%>
 				<div class="form-group">
-				<label for="txt_ubicacion" class="col-sm-5 control-label">Ingrese Nombre</label>
-				<div class="col-sm-7">
-					<input type="text" class="form-control" placeholder="Ingrese Nombre">
+					<label for="txt_ubicacion" class="col-sm-3 control-label">Ingrese Nombre</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" id="txt_nombre" name="txt_nombre" value="<%=@txt_nombre == nil ? '' : @txt_nombre %>" placeholder="Ingrese Nombre">
+					</div>
+					<div class="col-sm-3">
+					<button type="submit" class="btn btn-default">Buscar</button>
+					</div>
 				</div>
-				</div>
-				<button type="submit" class="btn btn-default">Buscar</button>
-			</form>
+			<% end %>
 			<br><br><br>
 			<div class="panel panel-default">
-				<div class="panel-heading">Panel heading</div>
 				<table class="table">
 					<thead>
 						<tr>
@@ -23,38 +24,33 @@
 							<th>Distrito</th>
 							<th>Precio Hora</th>
 							<th>Dimensiones</th>
-							<th>Tipo</th>
-							<th>Ubicación</th>
+							<th>Tipo Estacionamiento</th>
 							<th>Opción</th>
 						</tr>
 					</thead>
 					<tbody>
+					<%@estacionamientos.each do |p| %>
 						<tr>
-							<td>El Sol</td>
-							<td>Av San Borja 1440</td>
-							<td>San Borja</td>
-							<td>S/ 12.00</td>
-							<td>4*3 m2</td>
-							<td>Interior</td>
-							<td>Sótano 4</td>
-							<td><a href="#">Editar</a> | <a href="#">Eliminar</a></td>
+							<td><%=p.Nombre.to_s %></td>
+							<td><%=p.Direccion.to_s %></td>
+							<td><%=p.NombreDistrito %></td>
+							<td>S/ <%=p.PrecioPorHora.round(2).to_s %></td>
+							<td><%=p.Dimensiones.to_s %> m2</td>
+							<td><%=p.NombreTipoEstacionamiento %> </td>
+							<td><a href="#">Editar</a> | <a href="#" class="btn-eliminar-busqueda-dueno" id-estacionamiento="<%=p.IdEstacionamiento.to_s %>">Eliminar</a></td>
 						</tr>
-					</tbody>
-					<tbody>
-						<tr>
-							<td>La Luna</td>
-							<td>Av Angamos 1010</td>
-							<td>Surquillo</td>
-							<td>S/ 7.00</td>
-							<td>3*3.5 m2</td>
-							<td>Aire Libre</td>
-							<td>1er Piso</td>
-							<td><a href="#">Editar</a> | <a href="#">Eliminar</a></td>
-						</tr>
+					<% end %>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</section>
 	</div>
+</div>
+<div id="dialog" title="Eliminar Estacionamiento" style="display: none;">
+	<p>¿Está seguro de eliminar este estacionamiento?</p>	
+  	<%= form_for :estacionamiento, :url =>{:controller => "estacionamiento", :action => "eliminar_estacionamiento_post"} ,:method => :post,:html =>{ :class => "form-horizontal" , :id => "form_usuario_mantenimiento"} do |f|%>
+		<button type="submit" class="btn btn-primary mb-2">Eliminar</button>
+		<input id="hd_busqueda_dueno_id_estacionamiento" name="hd_busqueda_dueno_id_estacionamiento" type="hidden" value="">
+	<% end %>	
 </div>
