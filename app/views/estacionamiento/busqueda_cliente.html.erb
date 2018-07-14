@@ -70,7 +70,7 @@
                 <div class="thumbnail">
                     <img src=<%= image_url(p.Foto.to_s) %> height="54" alt="Porto Admin" />
                     <div class="caption">
-                    <h3><%=p.Nombre.to_s %></h3>
+                    <h3><a href="../estacionamiento/alquiler?id=<%=p.IdEstacionamiento %>"><%=p.Nombre.to_s %></a></h3>
                     <p><%=p.Direccion.to_s %>, <%=p.Dimensiones.to_s %> m2, S/ <%=p.PrecioPorHora.to_f %></p>
                     <p><a href="../estacionamiento/alquiler?id=<%=p.IdEstacionamiento.to_i %>" class="btn btn-default" role="button">Ver</a></p>
                     </div>
