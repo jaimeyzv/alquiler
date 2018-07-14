@@ -77,8 +77,17 @@
 		        $('#datetimepicker2').datetimepicker({
 		            format:'DD/MM/YYYY',
 		            maxDate: new Date()
-		        });
+				});
+				
+				$('#dtpFechaDesde').datetimepicker({
+		            format:'DD/MM/YYYY HH:mm',
+		            maxDate: new Date()
+				});
 
+				$('#dtpFechaHasta').datetimepicker({
+		            format:'DD/MM/YYYY HH:mm',
+		            maxDate: new Date()
+				});
 		    });		    
 		</script>
 

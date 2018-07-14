@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   post 'estacionamiento/alquiler_post'
 
   get 'estacionamiento/buscar_alquilados'
+  post 'estacionamiento/busqueda_alquilados_post'
 end
